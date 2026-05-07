@@ -125,7 +125,7 @@ export default function App() {
         <div className="auth-logo">✉</div>
         <h1 className="auth-title">MailAgent</h1>
         <p className="auth-sub">Your AI-powered Gmail assistant.<br />Sign in to get started.</p>
-        <a href={`${API}/auth/login`} className="auth-btn">
+        <a href={`/auth/login`} className="auth-btn">
           <svg viewBox="0 0 18 18" width="16" height="16">
             <path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4" />
             <path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z" fill="#34A853" />
