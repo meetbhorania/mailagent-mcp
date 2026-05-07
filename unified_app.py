@@ -306,7 +306,7 @@ async def auth_callback(request: Request):
         "scopes": list(creds.scopes or SCOPES),
         "email": user_email,
     }
-    response = RedirectResponse("/")
+    response = RedirectResponse(f"{BASE_URL}/")
     response.set_cookie(
         key="ma_sid",
         value=session_id,
