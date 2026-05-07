@@ -43,7 +43,15 @@ SCOPES = [
     "openid",
 ]
 
-CREDENTIALS_FILE = os.path.join(os.path.dirname(__file__), "credentials.json")
+import json, tempfile
+_creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+if _creds_json:
+    _tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False)
+    _tmp.write(_creds_json)
+    _tmp.close()
+    CREDENTIALS_FILE = _tmp.name
+else:
+    CREDENTIALS_FILE = os.path.join(os.path.dirname(__file__), "credentials.json")
 BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
