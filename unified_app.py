@@ -211,7 +211,8 @@ def _make_tools(token):
         return _search_emails(token, query, max_results)
     return [FunctionTool(func=f) for f in [send_email, read_inbox, get_email, reply_to_email, search_emails]]
 
-async def run_agent(token, message, session_id):
+async def run_agent(token, message, session_id, user_email=""):
+    user_name = user_email.split("@")[0].replace(".", " ").title()
     os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
     agent = LlmAgent(
         name="MailAgent",
@@ -223,7 +224,7 @@ async def run_agent(token, message, session_id):
 - Never use placeholders like [Your Name]
 - Give clean summaries when reading inbox
 - Be decisive and action-oriented
-- Sign emails as the user
+- - Always sign emails with the user's name: {user_name}. Never use [Your Name] or placeholders.
 Use tools: send_email, read_inbox, get_email, reply_to_email, search_emails""",
         tools=_make_tools(token),
     )
@@ -342,7 +343,8 @@ class ChatRequest(BaseModel):
 async def chat(req: ChatRequest, request: Request):
     token = _require_token(request)
     sid = _get_sid(request)
-    result = await run_agent(token, req.message.strip(), sid)
+    user_email = _tokens[sid].get("email", "")
+    result = await run_agent(token, req.message.strip(), sid, user_email)
     return result
 
 class SendRequest(BaseModel):

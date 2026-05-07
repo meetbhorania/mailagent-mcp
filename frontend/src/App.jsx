@@ -168,7 +168,7 @@ export default function App() {
             </div>
             <span className="u-dot" />
           </div>
-          <a href={`${API}/auth/logout`} className="sign-out-btn">Sign out</a>
+          <a href={`/auth/logout`} className="sign-out-btn">Sign out</a>
         </div>
       </aside>
 
@@ -178,7 +178,7 @@ export default function App() {
             <div className="topbar">
               <div>
                 <h1 className="ptitle">Executive Email Assistant</h1>
-                <p className="psub">Send · Read · Reply — powered by Google ADK & Gmail API</p>
+                <p className="psub">Read · Send · Reply </p>
               </div>
               <div className="model-tag">gemini-2.5-flash</div>
             </div>
