@@ -224,7 +224,7 @@ async def run_agent(token, message, session_id, user_email=""):
 - Never use placeholders like [Your Name]
 - Give clean summaries when reading inbox
 - Be decisive and action-oriented
-- - Always sign emails with the user's name: {user_name}. Never use [Your Name] or placeholders.
+- Sign emails as """ + user_name + """
 Use tools: send_email, read_inbox, get_email, reply_to_email, search_emails""",
         tools=_make_tools(token),
     )
